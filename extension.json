@@ -1,0 +1,13 @@
+{
+  "name": "NEC Decoder",
+  "apiVersion": "1.0.0",
+  "author": "Joey Murphy",
+  "version": "0.0.1",
+  "description": "Decodes IR Remote NEC codes",
+  "extensions": {
+    "NEC Decoder": {
+      "type": "HighLevelAnalyzer",
+      "entryPoint": "HighLevelAnalyzer.Hla"
+    }
+  }
+}
