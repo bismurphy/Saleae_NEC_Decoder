@@ -15,3 +15,5 @@ Now, with that foundational analyzer in place, we can apply the NEC decoder. Add
 For documentation of the signal format, I used this page pretty heavily: https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol
 
 # Please note that this is my first time making a Saleae extension and it could very well have many mistakes in it, of any number of varieties. I would love to hear any feedback anyone may have, especially folks from Saleae!
+
+The IR receiver I used in testing this was this one from Vishay: https://www.vishay.com/docs/82667/tsdp341.pdf
