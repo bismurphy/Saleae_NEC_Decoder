@@ -12,6 +12,8 @@ Now, with that foundational analyzer in place, we can apply the NEC decoder. Add
 
 ![screen capture of signal with Simple Parallel](./assets/nec_analyzed.png)
 
+Sometimes if you do a capture, you'll see it trying to detect bits in the "dead space" between actual codes. The way I've gone to fix this (which has never failed me) is to go back to the Analyzers tab, click the 3 vertical dots next to the Simple Parallel, and choose Restart. This does... something... that ends up realigning the bits properly.
+
 For documentation of the signal format, I used this page pretty heavily: https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol
 
 # Please note that this is my first time making a Saleae extension and it could very well have many mistakes in it, of any number of varieties. I would love to hear any feedback anyone may have, especially folks from Saleae!
