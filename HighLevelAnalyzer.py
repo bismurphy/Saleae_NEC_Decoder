@@ -23,12 +23,16 @@ class Hla(HighLevelAnalyzer):
         #A byte we will be building up bit by bit.
         self.byte_buildup = []
         self.buildup_start_time = None
+        #This will initialize the first byte of the capture so the times can be relative to the capture frame
+        self.first_frame_start = None
     def decode(self, frame: AnalyzerFrame):
         '''
         Process a frame from the input analyzer, and optionally return a single `AnalyzerFrame` or a list of `AnalyzerFrame`s.
 
         The type and data values in `frame` will depend on the input analyzer.
         '''
+        if self.first_frame_start is None:
+            self.first_frame_start = frame.start_time
         this_frame_size = int(float(frame.end_time - frame.start_time) * 10e3)
         frame_label = ""
         if 133<this_frame_size<137:
@@ -40,7 +44,14 @@ class Hla(HighLevelAnalyzer):
             return
         elif 111<this_frame_size<115:
             frame_label = "REPEAT"
+            self.byte_buildup = []
+            self.buildup_start_time = None
+        elif this_frame_size < 8: #Captures the end of a repeat
+            return
         else:
+            print("frame processing")
+            print(float(frame.start_time - self.first_frame_start)*1e3)
+            print(this_frame_size)
             interpreted_bit = 9999
             #This must be a normal bit, build up the byte.
             if self.buildup_start_time is None:
