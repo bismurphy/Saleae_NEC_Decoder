@@ -2,7 +2,7 @@
   "name": "NEC Decoder",
   "apiVersion": "1.0.0",
   "author": "Joey Murphy",
-  "version": "1.2",
+  "version": "1.2.0",
   "description": "Decodes IR Remote NEC codes",
   "extensions": {
     "NEC Decoder": {
