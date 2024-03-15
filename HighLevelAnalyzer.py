@@ -7,6 +7,7 @@ from saleae.analyzers import HighLevelAnalyzer, AnalyzerFrame, StringSetting, Nu
 # High level analyzers must subclass the HighLevelAnalyzer class.
 class Hla(HighLevelAnalyzer):
 
+    output_format = ChoicesSetting(choices=('Decimal', 'Hexadecimal'))
     # An optional list of types this analyzer produces, providing a way to customize the way frames are displayed in Logic 2.
     result_types = {
         'mytype': {
@@ -73,8 +74,12 @@ class Hla(HighLevelAnalyzer):
                 framestart = self.buildup_start_time
                 self.byte_buildup = []
                 self.buildup_start_time = None
+                if self.output_format == 'Decimal':
+                    out_string = str(byte_value)
+                elif self.output_format == 'Hexadecimal':
+                    out_string = f"0x{byte_value:02X}"
                 return AnalyzerFrame('mytype', framestart, frame.end_time, {
-                    'result': str(byte_value)
+                    'result': out_string
                 })
             else:
                 return
